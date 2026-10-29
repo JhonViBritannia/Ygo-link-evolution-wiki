@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Link Evolution Wiki</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@1,700;1,900&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <header class="cabecera">
+    <a href="#inicio" class="logo"><span class="logo-le">LINK EVOLUTION</span><span class="logo-wiki">WIKI</span></a>
+    <nav class="menu">
+      <a href="#inicio" data-i18n="nav.inicio"></a>
+      <a href="#cartas" data-i18n="nav.cartas"></a>
+      <a href="#packs" data-i18n="nav.packs"></a>
+      <a href="#duelos" data-i18n="nav.duelos"></a>
+      <a href="#constructor" data-i18n="nav.constructor"></a>
+      <a href="#quiz" data-i18n="nav.quiz"></a>
+      <a href="#meta" data-i18n="nav.meta"></a>
+      <a href="#sagas" data-i18n="nav.sagas"></a>
+      <a href="#guia" data-i18n="nav.guia"></a>
+    </nav>
+    <div class="idioma" role="group" aria-label="Idioma / Language">
+      <button data-idioma="es">ES</button>
+      <button data-idioma="en">EN</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- INICIO -->
+    <section id="inicio" class="pagina">
+      <div class="portada">
+        <p class="portada-pre">Yu-Gi-Oh!</p>
+        <h1>Legacy of the Duelist<br><em>Link Evolution</em></h1>
+        <p data-i18n="inicio.sub"></p>
+        <form class="busqueda-rapida" id="busqueda-rapida">
+          <input type="search" id="busqueda-rapida-texto" data-i18n-ph="inicio.placeholder">
+          <button type="submit" data-i18n="btn.buscar"></button>
+        </form>
+      </div>
+      <div class="tarjetas-inicio">
+        <a href="#cartas" class="tarjeta-inicio"><b data-i18n="nav.cartas"></b><span data-i18n="tile.cartas"></span></a>
+        <a href="#packs" class="tarjeta-inicio"><b data-i18n="nav.packs"></b><span data-i18n="tile.packs"></span></a>
+        <a href="#duelos" class="tarjeta-inicio"><b data-i18n="nav.duelos"></b><span data-i18n="tile.duelos"></span></a>
+        <a href="#quiz" class="tarjeta-inicio"><b data-i18n="nav.quiz"></b><span data-i18n="tile.quiz"></span></a>
+        <a href="#constructor" class="tarjeta-inicio"><b data-i18n="nav.constructor"></b><span data-i18n="tile.constructor"></span></a>
+        <a href="#meta" class="tarjeta-inicio"><b data-i18n="nav.meta"></b><span data-i18n="tile.meta"></span></a>
+        <a href="#sagas" class="tarjeta-inicio"><b data-i18n="nav.sagas"></b><span data-i18n="tile.sagas"></span></a>
+      </div>
+    </section>
+
+    <!-- CARTAS -->
+    <section id="cartas" class="pagina">
+      <h2 class="titulo" data-i18n="cartas.titulo"></h2>
+      <form id="filtros" class="filtros panel">
+        <input type="search" name="nombre" data-i18n-ph="cartas.nombre">
+        <select name="tipo">
+          <option value="" data-i18n="cartas.tipo"></option>
+          <option value="Normal Monster" data-i18n="tipo.Normal Monster"></option>
+          <option value="Effect Monster" data-i18n="tipo.Effect Monster"></option>
+          <option value="Fusion Monster" data-i18n="tipo.Fusion Monster"></option>
+          <option value="Ritual Monster" data-i18n="tipo.Ritual Monster"></option>
+          <option value="Synchro Monster" data-i18n="tipo.Synchro Monster"></option>
+          <option value="XYZ Monster" data-i18n="tipo.XYZ Monster"></option>
+          <option value="Pendulum Effect Monster" data-i18n="tipo.Pendulum Effect Monster"></option>
+          <option value="Link Monster" data-i18n="tipo.Link Monster"></option>
+          <option value="Spell Card" data-i18n="tipo.Spell Card"></option>
+          <option value="Trap Card" data-i18n="tipo.Trap Card"></option>
+        </select>
+        <select name="atributo">
+          <option value="" data-i18n="cartas.atributo"></option>
+          <option value="DARK" data-i18n="attr.DARK"></option>
+          <option value="LIGHT" data-i18n="attr.LIGHT"></option>
+          <option value="EARTH" data-i18n="attr.EARTH"></option>
+          <option value="WATER" data-i18n="attr.WATER"></option>
+          <option value="FIRE" data-i18n="attr.FIRE"></option>
+          <option value="WIND" data-i18n="attr.WIND"></option>
+          <option value="DIVINE" data-i18n="attr.DIVINE"></option>
+        </select>
+        <select name="nivel">
+          <option value="" data-i18n="cartas.nivel"></option>
+        </select>
+        <input type="text" name="arquetipo" list="lista-arquetipos" data-i18n-ph="cartas.arquetipo">
+        <datalist id="lista-arquetipos"></datalist>
+        <select name="orden">
+          <option value="name" data-i18n="orden.name"></option>
+          <option value="atk" data-i18n="orden.atk"></option>
+          <option value="def" data-i18n="orden.def"></option>
+          <option value="level" data-i18n="orden.level"></option>
+          <option value="new" data-i18n="orden.new"></option>
+        </select>
+        <label class="casilla">
+          <input type="checkbox" name="soloJuego" checked>
+          <span data-i18n="cartas.soloJuego"></span>
+        </label>
+        <button type="submit" data-i18n="btn.buscar"></button>
+      </form>
+      <p id="estado-busqueda" class="estado"></p>
+      <div id="resultados" class="rejilla"></div>
+      <div class="paginacion">
+        <button id="anterior" disabled data-i18n="btn.anterior"></button>
+        <span id="info-pagina"></span>
+        <button id="siguiente" disabled data-i18n="btn.siguiente"></button>
+      </div>
+    </section>
+
+    <!-- PACKS -->
+    <section id="packs" class="pagina">
+      <h2 class="titulo" data-i18n="packs.titulo"></h2>
+      <p class="estado" data-i18n="packs.intro"></p>
+      <div id="lista-packs"></div>
+      <div id="contenido-pack"></div>
+    </section>
+
+    <!-- DUELOS -->
+    <section id="duelos" class="pagina">
+      <h2 class="titulo" data-i18n="duelos.titulo"></h2>
+      <p class="estado" data-i18n="duelos.intro"></p>
+      <input type="search" id="filtro-duelos" class="filtro-texto" data-i18n-ph="duelos.filtro">
+      <div id="lista-duelos"></div>
+    </section>
+
+    <!-- CONSTRUCTOR DE MAZOS -->
+    <section id="constructor" class="pagina">
+      <h2 class="titulo" data-i18n="constructor.titulo"></h2>
+      <div class="barra-mazo panel">
+        <select id="mazo-elegido" aria-label="Mazo"></select>
+        <input type="text" id="mazo-nombre" data-i18n-ph="constructor.nombre">
+        <button id="mazo-nuevo" data-i18n="constructor.nuevo"></button>
+        <button id="mazo-mano" class="secundario" data-i18n="constructor.mano"></button>
+        <button id="mazo-borrar" class="secundario" data-i18n="constructor.borrar"></button>
+      </div>
+      <div class="constructor">
+        <div class="panel bloque-constructor">
+          <div class="pestanas">
+            <button class="pestana activo" data-pestana="buscar" data-i18n="constructor.buscar"></button>
+            <button class="pestana" data-pestana="favoritos" data-i18n="constructor.favoritos"></button>
+          </div>
+          <div id="panel-buscar">
+            <input type="search" id="mazo-buscar" class="filtro-texto" data-i18n-ph="constructor.buscarPh">
+            <div class="chips" id="mazo-filtro-tipo">
+              <button class="chip activo" data-tipo="" data-i18n="constructor.todos"></button>
+              <button class="chip" data-tipo="M" data-i18n="constructor.monstruos"></button>
+              <button class="chip" data-tipo="S" data-i18n="constructor.magicas"></button>
+              <button class="chip" data-tipo="T" data-i18n="constructor.trampas"></button>
+              <button class="chip" data-tipo="X" data-i18n="constructor.extra"></button>
+            </div>
+          </div>
+          <p class="estado" id="mazo-ayuda"></p>
+          <div id="mazo-resultados" class="rejilla rejilla-mini"></div>
+        </div>
+        <div class="panel bloque-constructor">
+          <div class="estadisticas" id="mazo-estadisticas"></div>
+          <h3><span data-i18n="constructor.main"></span> <small id="cuenta-main"></small></h3>
+          <div id="mazo-main" class="rejilla rejilla-mini"></div>
+          <h3><span data-i18n="constructor.extra"></span> <small id="cuenta-extra"></small></h3>
+          <div id="mazo-extra" class="rejilla rejilla-mini"></div>
+          <div id="mazo-mano-resultado"></div>
+        </div>
+      </div>
+      <div class="panel bloque-constructor">
+        <h3 data-i18n="constructor.faltan"></h3>
+        <div id="mazo-faltan"></div>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section id="quiz" class="pagina">
+      <h2 class="titulo" data-i18n="quiz.titulo"></h2>
+      <div id="quiz-contenido" class="panel quiz"></div>
+    </section>
+
+    <!-- META -->
+    <section id="meta" class="pagina">
+      <h2 class="titulo" data-i18n="meta.titulo"></h2>
+      <div class="aviso" data-i18n-html="meta.aviso"></div>
+      <div id="lista-meta" class="lista-mazos"></div>
+    </section>
+
+    <!-- SAGAS -->
+    <section id="sagas" class="pagina">
+      <h2 class="titulo" data-i18n="sagas.titulo"></h2>
+      <p class="estado" data-i18n="sagas.intro"></p>
+      <div id="lista-sagas"></div>
+    </section>
+
+    <!-- GUÍA -->
+    <section id="guia" class="pagina">
+      <h2 class="titulo" data-i18n="guia.titulo"></h2>
+      <div id="contenido-guia"></div>
+    </section>
+
+  </main>
+
+  <!-- Ventana con el detalle de una carta -->
+  <dialog id="detalle">
+    <button class="cerrar" id="cerrar-detalle" aria-label="Cerrar">✕</button>
+    <div id="detalle-contenido"></div>
+  </dialog>
+
+  <footer class="pie" data-i18n-html="pie"></footer>
+
+  <script src="js/textos.js"></script>
+  <script src="js/datos.js"></script>
+  <script src="js/mazos.js"></script>
+  <script src="js/obtencion.js"></script>
+  <script src="js/decks.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

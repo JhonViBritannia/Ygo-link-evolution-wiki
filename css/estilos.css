@@ -1,0 +1,318 @@
+/* ===== Tema inspirado en los menús de Yu-Gi-Oh! Tag Force (cambia los colores aquí) ===== */
+:root {
+  --azul-noche: #0a2a6b;
+  --azul: #1554c7;
+  --azul-cielo: #48a8f0;
+  --cielo-claro: #d9eeff;
+  --blanco: #ffffff;
+  --naranja: #c25200;
+  --amarillo: #ffd23f;
+  --texto: #0d1f45;
+  --texto-suave: #3d5683;
+  --radio: 14px;
+  --fuente-titulos: "Exo 2", "Segoe UI", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Nunito", "Segoe UI", system-ui, sans-serif;
+  color: var(--texto);
+  line-height: 1.5;
+  background-color: var(--cielo-claro);
+  /* Franjas diagonales en movimiento, como el fondo de los menús de Tag Force */
+  background-image: repeating-linear-gradient(-45deg, rgba(255,255,255,.55) 0 22px, transparent 22px 44px);
+  background-size: 124px 124px;
+  animation: franjas 6s linear infinite;
+}
+@keyframes franjas { to { background-position: 124px 0; } }
+
+a { color: var(--azul); }
+
+/* ===== Cabecera ===== */
+.cabecera {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px;
+  padding: 10px 20px;
+  background: linear-gradient(180deg, var(--azul) 0%, var(--azul-noche) 100%);
+  border-bottom: 4px solid var(--amarillo);
+}
+.logo { display: flex; align-items: baseline; gap: 6px; text-decoration: none; font-family: var(--fuente-titulos); font-style: italic; }
+.logo-le { color: var(--blanco); font-weight: 900; font-size: 1.25rem; letter-spacing: .02em; }
+.logo-wiki { background: var(--naranja); color: var(--blanco); font-weight: 900; padding: 0 8px; transform: skewX(-12deg); }
+
+.menu { display: flex; flex-wrap: wrap; gap: 4px; flex: 1; }
+.menu a {
+  padding: 5px 14px; transform: skewX(-12deg);
+  background: rgba(255,255,255,.12); color: var(--blanco);
+  font-weight: 800; font-size: .9rem; text-decoration: none;
+  border: 2px solid transparent; transition: background .15s, transform .15s;
+}
+.menu a:hover { background: rgba(255,255,255,.25); transform: skewX(-12deg) translateY(-2px); }
+.menu a.activo { background: var(--naranja); border-color: var(--amarillo); }
+
+.idioma { display: flex; }
+.idioma button { padding: 4px 10px; border-radius: 0; background: rgba(255,255,255,.15); border: 2px solid var(--blanco); color: var(--blanco); }
+.idioma button:first-child { border-radius: 99px 0 0 99px; }
+.idioma button:last-child { border-radius: 0 99px 99px 0; }
+.idioma button.activo { background: var(--blanco); color: var(--azul-noche); }
+
+main { max-width: 1200px; margin: 0 auto; padding: 24px 16px 40px; }
+
+/* Solo se ve la página activa; entra deslizándose */
+.pagina { display: none; }
+.pagina.activa { display: block; animation: entrar .35s ease-out; }
+@keyframes entrar { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: none; } }
+
+/* ===== Títulos tipo banda ===== */
+h1, h2, h3, h4 { font-family: var(--fuente-titulos); font-style: italic; line-height: 1.15; }
+.titulo {
+  display: inline-block; margin: 0 0 16px; padding: 6px 28px 6px 18px;
+  font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 900; color: var(--blanco);
+  background: linear-gradient(90deg, var(--azul-noche), var(--azul));
+  clip-path: polygon(0 0, 100% 0, calc(100% - 18px) 100%, 0 100%);
+}
+
+/* ===== Paneles ===== */
+.panel, .saga, .mazo, .bloque-guia, .tarjeta-inicio, .aviso, .grupo {
+  background: var(--blanco);
+  border: 3px solid var(--azul);
+  border-radius: var(--radio);
+  box-shadow: 0 4px 0 var(--azul-noche);
+}
+
+/* ===== Inicio ===== */
+.portada {
+  text-align: center; padding: 40px 16px 32px; color: var(--blanco);
+  background: linear-gradient(160deg, var(--azul-noche), var(--azul));
+  border: 3px solid var(--blanco); border-radius: var(--radio);
+  box-shadow: 0 6px 0 var(--azul-noche);
+}
+.portada-pre { margin: 0; font-family: var(--fuente-titulos); font-style: italic; font-weight: 900; color: var(--amarillo); font-size: 1.2rem; }
+.portada h1 { font-size: clamp(1.8rem, 5vw, 3.2rem); margin: 4px 0 10px; font-weight: 900; }
+.portada h1 em { color: var(--amarillo); }
+.busqueda-rapida { display: flex; gap: 8px; max-width: 520px; margin: 20px auto 0; }
+.busqueda-rapida input { flex: 1; }
+
+.tarjetas-inicio {
+  display: grid; gap: 16px; margin-top: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+.tarjeta-inicio {
+  display: flex; flex-direction: column; gap: 6px; padding: 18px;
+  color: var(--texto); text-decoration: none; transition: transform .15s, box-shadow .15s;
+}
+.tarjeta-inicio b { font-family: var(--fuente-titulos); font-style: italic; font-size: 1.2rem; color: var(--azul); }
+.tarjeta-inicio:hover { transform: translateY(-4px); box-shadow: 0 8px 0 var(--naranja); border-color: var(--naranja); }
+.tarjeta-inicio span { color: var(--texto-suave); font-size: .92rem; }
+
+/* ===== Formularios y botones ===== */
+input, select, button {
+  font: inherit; color: var(--texto);
+  background: var(--blanco); border: 2px solid var(--azul-cielo);
+  border-radius: 99px; padding: 8px 14px;
+}
+input:focus, select:focus { outline: 3px solid var(--amarillo); outline-offset: 1px; }
+button {
+  cursor: pointer; font-weight: 800; color: var(--blanco);
+  background: var(--naranja); border-color: #8f3c00;
+  box-shadow: 0 3px 0 #8f3c00; transition: transform .1s, box-shadow .1s;
+}
+button:hover:not(:disabled) { transform: translateY(-1px); }
+button:active:not(:disabled) { transform: translateY(2px); box-shadow: 0 1px 0 #8f3c00; }
+button:disabled { opacity: .45; cursor: default; }
+
+.filtros {
+  display: grid; gap: 10px; padding: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+.casilla { display: flex; align-items: center; gap: 8px; color: var(--texto-suave); font-size: .9rem; grid-column: span 2; }
+.casilla input { width: auto; }
+.estado { color: var(--texto-suave); font-weight: 600; }
+.filtro-texto { width: min(420px, 100%); margin-bottom: 16px; }
+
+/* ===== Rejilla de cartas ===== */
+.rejilla {
+  display: grid; gap: 14px;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+}
+.carta {
+  position: relative; background: none; border: none; box-shadow: none; padding: 0;
+  text-align: center; color: var(--texto); font-weight: 700; font-size: .82rem;
+}
+.carta img {
+  width: 100%; aspect-ratio: 59 / 86; object-fit: cover;
+  border-radius: 6px; background: var(--azul-noche);
+  border: 2px solid var(--blanco);
+  box-shadow: 0 4px 8px rgba(10, 42, 107, .35);
+  transition: transform .15s;
+}
+.carta:hover img { transform: translateY(-6px) rotate(-2deg); }
+.carta span { display: block; margin-top: 4px; }
+.carta .sello {
+  position: absolute; top: 4px; left: 4px; padding: 1px 6px; border-radius: 4px;
+  font-size: .68rem; font-weight: 800; color: var(--blanco); background: var(--texto-suave);
+}
+.carta .sello.rara { background: var(--naranja); }
+.sin-imagen { display: grid; place-items: center; width: 100%; aspect-ratio: 59 / 86; border-radius: 6px; background: var(--azul-noche); color: var(--blanco); padding: 6px; }
+
+.paginacion { display: flex; justify-content: center; align-items: center; gap: 16px; margin: 24px 0; font-weight: 700; }
+
+/* ===== Detalle de carta ===== */
+dialog {
+  width: min(860px, 94vw); max-height: 90vh; padding: 24px;
+  background: var(--blanco); color: var(--texto);
+  border: 4px solid var(--azul); border-radius: var(--radio);
+}
+dialog[open] { animation: entrar .25s ease-out; }
+dialog::backdrop { background: rgba(10, 42, 107, .7); }
+.cerrar { position: absolute; top: 10px; right: 10px; padding: 4px 12px; }
+.ficha { display: grid; grid-template-columns: 260px 1fr; gap: 24px; }
+.ficha img { width: 100%; border-radius: 8px; }
+.ficha h3 { margin: 0 0 4px; color: var(--azul); font-size: 1.5rem; padding-right: 40px; }
+.datos { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 16px; }
+.etiqueta { padding: 2px 10px; border-radius: 99px; background: var(--cielo-claro); border: 1px solid var(--azul-cielo); font-size: .82rem; font-weight: 700; }
+.texto-carta { white-space: pre-line; background: #f3f8ff; border: 2px solid var(--cielo-claro); padding: 12px; border-radius: 10px; }
+.obtencion { margin-top: 14px; padding: 12px 14px; border-radius: 10px; background: #fff6e8; border: 2px solid var(--amarillo); }
+.obtencion h4 { margin: 0 0 6px; color: var(--naranja); }
+.obtencion ul { margin: 0; padding-left: 18px; }
+.acciones { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 16px; }
+
+/* ===== Packs y duelos ===== */
+.grupo { padding: 14px 16px; margin-bottom: 16px; }
+.grupo h3 { margin: 0 0 10px; color: var(--azul); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  padding: 4px 12px; border-radius: 99px; font-size: .85rem; font-weight: 700;
+  background: var(--cielo-claro); border: 2px solid var(--azul-cielo); color: var(--texto); box-shadow: none;
+}
+button.chip:hover { border-color: var(--naranja); }
+button.chip.activo { background: var(--naranja); border-color: #8f3c00; color: var(--blanco); }
+#contenido-pack .rejilla { margin-top: 8px; }
+
+details.duelo { border-top: 2px dashed var(--cielo-claro); padding: 8px 0; }
+details.duelo summary { cursor: pointer; font-weight: 800; }
+details.duelo summary small { color: var(--texto-suave); font-weight: 600; }
+details.duelo .rejilla { margin-top: 10px; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
+
+/* ===== Arquetipos y meta ===== */
+.lista-mazos { display: grid; gap: 18px; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); }
+.mazo { padding: 0; overflow: hidden; }
+.mazo-cabecera { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; padding: 10px 16px; background: linear-gradient(90deg, var(--azul-noche), var(--azul)); color: var(--blanco); }
+.mazo-cabecera h3 { margin: 0; font-size: 1.25rem; }
+.mazo-cabecera small { color: var(--amarillo); font-weight: 800; }
+.mazo-cuerpo { padding: 12px 16px 16px; }
+.mazo-cuerpo h4 { margin: 12px 0 6px; color: var(--azul); }
+.mazo-cuerpo p { margin: 4px 0; }
+.aviso { padding: 12px 16px; margin-bottom: 18px; border-color: var(--naranja); box-shadow: 0 4px 0 #8f3c00; }
+
+/* ===== Constructor de mazos ===== */
+.barra-mazo { display: flex; flex-wrap: wrap; gap: 8px; padding: 12px; margin-bottom: 16px; }
+.barra-mazo input { flex: 1; min-width: 160px; }
+button.secundario { background: var(--blanco); color: var(--naranja); border-color: var(--naranja); box-shadow: 0 3px 0 var(--naranja); }
+.constructor { display: grid; gap: 16px; grid-template-columns: 1fr 1.5fr; margin-bottom: 16px; align-items: start; }
+.bloque-constructor { padding: 14px 16px; }
+.bloque-constructor h3 { margin: 14px 0 8px; color: var(--azul); }
+.bloque-constructor h3 small { font-family: "Nunito", sans-serif; font-style: normal; color: var(--naranja); }
+.bloque-constructor h3 small.valido { color: #1a7a33; }
+.bloque-constructor .filtro-texto { width: 100%; margin-bottom: 8px; }
+.estadisticas small { color: var(--texto-suave); }
+
+/* Pestañas Buscar / Favoritas */
+.pestanas { display: flex; gap: 4px; margin-bottom: 12px; border-bottom: 3px solid var(--azul); }
+.pestana { border-radius: 10px 10px 0 0; box-shadow: none; background: var(--cielo-claro); color: var(--azul-noche); border: 2px solid var(--azul-cielo); border-bottom: none; }
+.pestana.activo { background: var(--azul); color: var(--blanco); border-color: var(--azul); }
+
+/* Cartas pequeñas del constructor */
+.rejilla-mini { grid-template-columns: repeat(auto-fill, minmax(82px, 1fr)); gap: 10px; }
+#mazo-resultados { max-height: 620px; overflow-y: auto; padding: 8px 4px 4px; }
+.carta-mazo { position: relative; }
+.carta-mazo .carta { width: 100%; font-size: .72rem; }
+.carta-mazo .copias {
+  position: absolute; top: -6px; right: -6px; padding: 1px 7px; border-radius: 99px;
+  background: var(--naranja); color: var(--blanco); font-style: normal; font-weight: 800; font-size: .78rem;
+  border: 2px solid var(--blanco);
+}
+.carta-mazo.falta .carta img { filter: grayscale(.85); opacity: .6; }
+.carta-mazo.nueva { animation: aparecer .35s ease-out; }
+@keyframes aparecer { from { transform: scale(.6) rotate(-6deg); opacity: 0; } to { transform: none; opacity: 1; } }
+.controles { display: flex; justify-content: center; gap: 3px; margin-top: 4px; }
+button.mini { width: 26px; height: 26px; padding: 0; flex: none; font-size: .85rem; border-radius: 99px; }
+button.mini.tengo { background: var(--blanco); color: var(--texto-suave); border-color: var(--azul-cielo); box-shadow: 0 2px 0 var(--azul-cielo); }
+button.mini.tengo.activo { background: #1a7a33; color: var(--blanco); border-color: #0f5a23; box-shadow: 0 2px 0 #0f5a23; }
+button.mini.info { position: absolute; top: 4px; left: 4px; width: 22px; height: 22px; font-size: .75rem; font-style: italic; background: var(--azul); border-color: var(--azul-noche); box-shadow: none; }
+.mano .carta img { animation: aparecer .4s ease-out backwards; }
+.mano .carta:nth-child(2) img { animation-delay: .08s; }
+.mano .carta:nth-child(3) img { animation-delay: .16s; }
+.mano .carta:nth-child(4) img { animation-delay: .24s; }
+.mano .carta:nth-child(5) img { animation-delay: .32s; }
+.compras { padding-left: 18px; }
+.compras li { margin-bottom: 8px; }
+.compras small { color: var(--texto-suave); }
+
+/* ===== Mazos de la comunidad (ficha de carta y quiz) ===== */
+.decks-carta { margin-top: 20px; padding-top: 12px; border-top: 3px dashed var(--cielo-claro); }
+.decks-carta h4 { margin: 0 0 10px; color: var(--azul); font-size: 1.15rem; }
+.lista-decks { display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+.deck { display: flex; gap: 10px; padding: 10px; border-radius: 10px; background: #f3f8ff; border: 2px solid var(--cielo-claro); }
+.deck img { width: 56px; align-self: flex-start; border-radius: 4px; }
+.deck b { display: block; line-height: 1.25; }
+.deck small { display: block; color: var(--texto-suave); }
+.deck .acciones { margin-top: 8px; }
+.deck .acciones button { padding: 4px 12px; font-size: .85rem; }
+.afinidad { display: inline-block; margin-top: 4px; padding: 1px 10px; border-radius: 99px; background: var(--amarillo); color: var(--azul-noche); font-style: normal; font-weight: 800; }
+
+/* ===== Quiz ===== */
+.quiz { padding: 20px; }
+.quiz h3 { color: var(--azul); font-size: 1.4rem; margin: 8px 0 14px; }
+.progreso { height: 10px; border-radius: 99px; background: var(--cielo-claro); overflow: hidden; }
+.progreso span { display: block; height: 100%; background: var(--naranja); transition: width .3s; }
+.opciones { display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); margin-bottom: 16px; }
+button.opcion { border-radius: 12px; text-align: left; padding: 12px 16px; background: var(--blanco); color: var(--azul-noche); border: 3px solid var(--azul-cielo); box-shadow: 0 4px 0 var(--azul-cielo); }
+button.opcion:hover { border-color: var(--naranja); box-shadow: 0 4px 0 var(--naranja); }
+.quiz .lista-decks { margin-bottom: 16px; }
+
+/* ===== Aviso flotante ===== */
+#toast {
+  position: fixed; left: 50%; bottom: 24px; z-index: 50; transform: translateX(-50%);
+  padding: 10px 18px; border-radius: 99px; background: var(--azul-noche); color: var(--blanco);
+  font-weight: 800; border: 2px solid var(--amarillo); opacity: 0; pointer-events: none;
+}
+#toast.visible { animation: toast 2.6s ease-out; }
+@keyframes toast { 0% { opacity: 0; transform: translate(-50%, 20px); } 10%, 80% { opacity: 1; transform: translate(-50%, 0); } 100% { opacity: 0; } }
+/* ===== Sagas ===== */
+.saga { margin-bottom: 20px; padding: 18px; }
+.saga h3 { margin: 0 0 4px; color: var(--azul); font-size: 1.4rem; }
+.saga p { color: var(--texto-suave); margin: 4px 0 12px; }
+.saga h4 { margin: 12px 0 6px; font-size: .95rem; color: var(--naranja); }
+
+/* ===== Guía ===== */
+.bloque-guia { margin-bottom: 20px; padding: 16px 20px; }
+.bloque-guia h3 { margin-top: 0; color: var(--azul); }
+.bloque-guia li { margin-bottom: 6px; }
+.glosario dt { font-weight: 800; color: var(--azul-noche); }
+.glosario dd { margin: 0 0 10px; color: var(--texto-suave); }
+
+.pie { text-align: center; padding: 20px 16px; color: var(--blanco); font-size: .85rem; background: var(--azul-noche); border-top: 4px solid var(--amarillo); }
+.pie a { color: var(--amarillo); }
+
+/* ===== Accesibilidad: menos movimiento si el sistema lo pide ===== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+/* ===== Móvil ===== */
+@media (max-width: 640px) {
+  .ficha { grid-template-columns: 1fr; }
+  .ficha img { max-width: 240px; margin: 0 auto; display: block; }
+  .casilla { grid-column: auto; }
+  .rejilla { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
+  .lista-mazos, .constructor { grid-template-columns: 1fr; }
+  .lista-decks { grid-template-columns: 1fr; }
+  .cabecera { padding: 10px 12px; }
+  .idioma { margin-left: auto; }
+  /* El menú pasa a una fila que se desliza con el dedo */
+  .menu { order: 3; flex: 0 0 100%; flex-wrap: nowrap; overflow-x: auto; padding: 2px 4px 4px; }
+  .menu a { flex: none; padding: 4px 10px; font-size: .82rem; }
+}
